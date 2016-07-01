@@ -1,0 +1,2 @@
+# Farris symmetric curves bot
+
