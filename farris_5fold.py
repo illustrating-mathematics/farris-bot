@@ -10,6 +10,9 @@ parse.add_argument('--decay', type=float, default=1.1)
 parse.add_argument('--dir', default='')
 opts = parse.parse_args()
 
+from matplotlib import use
+use('Agg')
+
 from numpy import array, random, linspace, exp
 from matplotlib.pylab import *
 import os.path
@@ -43,9 +46,8 @@ else:
 theta = linspace(0,2*pi,500)
 maxzs = max([sqrt(norm(array([coeff0[j]*exp(complex(0,1)*j*theta) for j in coeff]).sum(axis=0)))
              for coeff in [coeff0, coeff1, coeff2]])
-frame = 0.25 * ceil(4*maxzs)
+frame = ceil(4*maxzs)/6
 axshape = [-frame, frame, -frame, frame]
-print(maxzs, axshape)
 
 figure(figsize=(6,6))
 for i,t in enumerate(linspace(0,1,fpp)):
