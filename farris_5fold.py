@@ -46,7 +46,7 @@ else:
 theta = linspace(0,2*pi,500)
 maxzs = max([sqrt(norm(array([coeff0[j]*exp(complex(0,1)*j*theta) for j in coeff]).sum(axis=0)))
              for coeff in [coeff0, coeff1, coeff2]])
-frame = ceil(4*maxzs)/6
+frame = ceil(4*maxzs)/5
 axshape = [-frame, frame, -frame, frame]
 
 figure(figsize=(6,6))
