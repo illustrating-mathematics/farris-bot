@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 
 parse = argparse.ArgumentParser()
@@ -8,6 +10,7 @@ parse.add_argument('--fpp', type=int, default=48)
 parse.add_argument('--seed', type=int, default=42)
 parse.add_argument('--decay', type=float, default=1.1)
 parse.add_argument('--dir', default='')
+parse.add_argument('--extension', default='png')
 opts = parse.parse_args()
 
 from matplotlib import use
@@ -57,7 +60,7 @@ for i,t in enumerate(linspace(0,1,fpp)):
     axis('square')
     axis('off')
     axis(axshape)
-    savefig(os.path.join(opts.dir, "frame{:03}.png".format(i)), bbox_inches='tight')
+    savefig(os.path.join(opts.dir, "frame{:03}.{}".format(i, opts.extension)), bbox_inches='tight')
     
 for i,t in enumerate(linspace(0,1,fpp)):
     zs = array([((1-t)*coeff1[j]+t*coeff2[j])*exp(complex(0,1)*j*theta) for j in coeff0]).sum(axis=0)
@@ -66,7 +69,7 @@ for i,t in enumerate(linspace(0,1,fpp)):
     axis('square')
     axis('off')
     axis(axshape)
-    savefig(os.path.join(opts.dir, "frame{:03}.png".format(fpp+i)), bbox_inches='tight')
+    savefig(os.path.join(opts.dir, "frame{:03}.{}".format(fpp+i, opts.extension)), bbox_inches='tight')
 
 for i,t in enumerate(linspace(0,1,fpp)):
     zs = array([((1-t)*coeff2[j]+t*coeff0[j])*exp(complex(0,1)*j*theta) for j in coeff0]).sum(axis=0)
@@ -75,4 +78,4 @@ for i,t in enumerate(linspace(0,1,fpp)):
     axis('square')
     axis('off')
     axis(axshape)
-    savefig(os.path.join(opts.dir, "frame{:03}.png".format(2*fpp+i)), bbox_inches='tight')
+    savefig(os.path.join(opts.dir, "frame{:03}.{}".format(2*fpp+i, opts.extension)), bbox_inches='tight')
