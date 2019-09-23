@@ -16,7 +16,7 @@ api = tweepy.API(auth)
 
 seed = random.randint(0,2**20)
 use_complex = random.choice([True, False])
-symmetry = random.choice([3,3,3,4,5,5,5,5,5,5,5,7,7,9])
+symmetry = random.choice([3,3,3,4,5,5,5,5,5,5,5,6,6,6,7,7,8,9,9])
 
 # no swastikas
 if symmetry == 4:

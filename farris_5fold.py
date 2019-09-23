@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import argparse
 
 parse = argparse.ArgumentParser()
@@ -10,7 +8,6 @@ parse.add_argument('--fpp', type=int, default=48)
 parse.add_argument('--seed', type=int, default=42)
 parse.add_argument('--decay', type=float, default=1.1)
 parse.add_argument('--dir', default='')
-parse.add_argument('--extension', default='png')
 opts = parse.parse_args()
 
 from matplotlib import use
@@ -47,7 +44,12 @@ else:
           for j in range(-steps,steps)}
 
 theta = linspace(0,2*pi,500)
-maxzs = max([sqrt(norm(array([coeff0[j]*exp(complex(0,1)*j*theta) for j in coeff]).sum(axis=0)))
+
+### Fixed typo 2019-09-23, 1pm. Anything generated before this time used the following code line instead:
+
+#maxzs = max([sqrt(norm(array([coeff0[j]*exp(complex(0,1)*j*theta) for j in coeff]).sum(axis=0)))
+#             for coeff in [coeff0, coeff1, coeff2]])
+maxzs = max([sqrt(norm(array([coeff[j]*exp(complex(0,1)*j*theta) for j in coeff]).sum(axis=0)))
              for coeff in [coeff0, coeff1, coeff2]])
 frame = ceil(4*maxzs)/5
 axshape = [-frame, frame, -frame, frame]
@@ -60,7 +62,7 @@ for i,t in enumerate(linspace(0,1,fpp)):
     axis('square')
     axis('off')
     axis(axshape)
-    savefig(os.path.join(opts.dir, "frame{:03}.{}".format(i, opts.extension)), bbox_inches='tight')
+    savefig(os.path.join(opts.dir, "frame{:03}.png".format(i)), bbox_inches='tight')
     
 for i,t in enumerate(linspace(0,1,fpp)):
     zs = array([((1-t)*coeff1[j]+t*coeff2[j])*exp(complex(0,1)*j*theta) for j in coeff0]).sum(axis=0)
@@ -69,7 +71,7 @@ for i,t in enumerate(linspace(0,1,fpp)):
     axis('square')
     axis('off')
     axis(axshape)
-    savefig(os.path.join(opts.dir, "frame{:03}.{}".format(fpp+i, opts.extension)), bbox_inches='tight')
+    savefig(os.path.join(opts.dir, "frame{:03}.png".format(fpp+i)), bbox_inches='tight')
 
 for i,t in enumerate(linspace(0,1,fpp)):
     zs = array([((1-t)*coeff2[j]+t*coeff0[j])*exp(complex(0,1)*j*theta) for j in coeff0]).sum(axis=0)
@@ -78,4 +80,4 @@ for i,t in enumerate(linspace(0,1,fpp)):
     axis('square')
     axis('off')
     axis(axshape)
-    savefig(os.path.join(opts.dir, "frame{:03}.{}".format(2*fpp+i, opts.extension)), bbox_inches='tight')
+    savefig(os.path.join(opts.dir, "frame{:03}.png".format(2*fpp+i)), bbox_inches='tight')
