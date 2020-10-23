@@ -13,7 +13,7 @@ jobs:
       
       - name: Install required packages
         run: pip install matplotlib numpy tweepy
-	
+      
       - name: Run the script
         run: python farris_control.py
         env:
