@@ -1,0 +1,23 @@
+name: tweet
+
+on:
+  schedule:
+    - cron: 0 */4 * * *
+  workflow_dispatch:
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install required packages
+        run: pip install matplotlib numpy tweepy
+	
+      - name: Run the script
+        run: python farris_control.py
+        env:
+          CONSUMERKEY: ${{ secrets.CONSUMERKEY }}
+          CONSUMERSECRET: ${{ secrets.CONSUMERSECRET }}
+          VERIFIERTOKEN: ${{ secrets.VERIFIERTOKEN }}
+          VERIFIERSECRET: ${{ secrets.VERIFIERSECRET }}

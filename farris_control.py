@@ -4,14 +4,14 @@ parse = argparse.ArgumentParser()
 opts = parse.parse_args()
 
 import tweepy
-import creds
+#import creds
 import os, os.path
 import tempfile
 import subprocess
 import random
 
-auth = tweepy.OAuthHandler(creds.consumerkey, creds.consumersecret)
-auth.set_access_token(creds.verifiertoken, creds.verifiersecret)
+auth = tweepy.OAuthHandler(os.environ["CONSUMERKEY"], os.environ["CONSUMERSECRET"])
+auth.set_access_token(os.environ["VERIFIERTOKEN"], os.environ["VERIFIERSECRET"])
 api = tweepy.API(auth)
 
 seed = random.randint(0,2**20)
@@ -29,8 +29,8 @@ if use_complex:
 subprocess.run(command.split())
 subprocess.run("convert -delay 4 {path} out.gif".format(
     path=os.path.join('output', "frame*.png")).split())
-subprocess.run(("cp out.gif /home/michiexile/webapps/blog_illustrating/symmetric_curves/{symm}-{seed}{cpx}.gif".format(symm=symmetry, seed=seed, cpx={True: '-complex', False: ''}[use_complex])).split())
-subprocess.run("python gallery.py".split())
+#subprocess.run(("cp out.gif /home/michiexile/webapps/blog_illustrating/symmetric_curves/{symm}-{seed}{cpx}.gif".format(symm=symmetry, seed=seed, cpx={True: '-complex', False: ''}[use_complex])).split())
+#subprocess.run("python gallery.py".split())
 statustext = '{symmetry}-fold symmetry, seed: {seed}'.format(symmetry=symmetry, seed=seed)
 if use_complex:
     statustext += ', complex Fourier coefficients'
