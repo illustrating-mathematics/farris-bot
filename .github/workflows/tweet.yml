@@ -12,10 +12,10 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Install required packages
-        run: pip install matplotlib numpy tweepy
+        run: pip3 install matplotlib numpy tweepy
       
       - name: Run the script
-        run: python farris_control.py
+        run: python3 farris_control.py
         env:
           CONSUMERKEY: ${{ secrets.CONSUMERKEY }}
           CONSUMERSECRET: ${{ secrets.CONSUMERSECRET }}
