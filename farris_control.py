@@ -22,7 +22,7 @@ symmetry = random.choice([3,3,3,4,5,5,5,5,5,5,5,6,6,6,7,7,8,9,9])
 if symmetry == 4:
     use_complex = False
 
-command = "python farris_5fold.py --fpp 48 --seed {seed} --dir output --symm {symm}".format(
+command = "python3 farris_5fold.py --fpp 48 --seed {seed} --dir output --symm {symm}".format(
     seed=seed, symm=symmetry)
 if use_complex:
     command += " --complex"
