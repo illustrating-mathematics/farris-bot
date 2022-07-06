@@ -37,4 +37,7 @@ subprocess.run("convert -delay 4 {path} out.gif".format(
 statustext = '{symmetry}-fold symmetry, seed: {seed}'.format(symmetry=symmetry, seed=seed)
 if use_complex:
     statustext += ', complex Fourier coefficients'
-api.update_with_media('out.gif', status=statustext)
+    
+# Time to tweet
+out_gif = api.media_upload(filename='out.gif')
+api.update_status(status=statustext, media_ids=[out_gif.media_key])
