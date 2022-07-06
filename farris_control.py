@@ -10,8 +10,8 @@ import tempfile
 import subprocess
 import random
 
-auth = tweepy.OAuthHandler(os.environ["CONSUMERKEY"], os.environ["CONSUMERSECRET"])
-auth.set_access_token(os.environ["VERIFIERTOKEN"], os.environ["VERIFIERSECRET"])
+auth = tweepy.OAuth1UserHandler(os.environ["CONSUMERKEY"], os.environ["CONSUMERSECRET"], 
+                                os.environ["VERIFIERTOKEN"], os.environ["VERIFIERSECRET"])
 api = tweepy.API(auth)
 
 seed = random.randint(0,2**20)
@@ -40,4 +40,4 @@ if use_complex:
     
 # Time to tweet
 out_gif = api.media_upload(filename='out.gif')
-api.update_status(status=statustext, media_ids=[out_gif.media_key])
+api.update_status(status=statustext, media_ids=[out_gif.media_id])
