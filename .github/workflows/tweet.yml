@@ -16,7 +16,7 @@ jobs:
         run: |
             pip3 install wheel setuptools 
             pip3 install kiwisolver 
-            pip3 install matplotlib numpy tweepy
+            pip3 install matplotlib numpy tweepy==4.10
       
       - name: Run the script
         run: python3 farris_control.py
