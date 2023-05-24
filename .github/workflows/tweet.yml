@@ -2,8 +2,8 @@ name: tweet
 
 # Run every 4 hours throughout the day
 on:
-  schedule:
-    - cron: 0 */4 * * *
+  #schedule:
+  #  - cron: 0 */4 * * *
   workflow_dispatch:
 
 jobs:
